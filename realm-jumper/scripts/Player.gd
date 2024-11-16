@@ -20,7 +20,7 @@ var max_wall_jump_timer : float = .2
 var wall_jump_timer : float
 
 var can_dash : bool = true
-var dash_speed : float = 350
+var dash_speed : float = 300
 var dash_dir : Vector2
 var is_dashing : bool
 var max_dash_timer : float = .15
@@ -45,16 +45,17 @@ func _process(delta: float) -> void:
 		else: 
 			is_dashing = false
 	elif is_wall_jumping:
-		print(wall_jump_dir)
+		#print(wall_jump_dir)
 		if wall_jump_timer <= max_wall_jump_timer:
 			velocity.x = wall_jump_dir.x * wall_jump_velocity
 			velocity.y = wall_jump_dir.y * wall_jump_velocity
 		else: 
 			is_wall_jumping = false
+			can_dash = true
 	else:
 		var is_on_wall : bool = wall_raycast.is_colliding() and not is_on_floor()
 		var distance_to_wall : float
-		print("not dashing nor wall jumping")
+		#print("not dashing nor wall jumping")
 		# Wall Logic
 		if is_on_wall and not is_wall_jumping:
 			distance_to_wall = Vector2(global_position - wall_raycast.get_collision_point()).x
@@ -124,9 +125,9 @@ func _process(delta: float) -> void:
 	# Sprite flipping
 	if direction_x != 0: flip_player(direction_x)
 
-func reset_stamina():
-	can_dash = true
-	can_jump = true
+func reset_stamina(reset_dash = true, reset_jump = true):
+	if reset_dash: can_dash = true
+	if reset_jump: can_jump = true
 	dimension_jump_count = 0
 	is_jumping = false
 	jump_timer = 0
