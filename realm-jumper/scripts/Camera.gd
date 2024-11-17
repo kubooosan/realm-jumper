@@ -10,6 +10,5 @@ func _enter_tree() -> void:
 func _process(delta: float) -> void:
 	# follow player
 	if behaviour == 0:
-		#print(player.global_position)
 		global_position = player.global_position
 	pass

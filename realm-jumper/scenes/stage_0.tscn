@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://sbtk27es35gc"]
+[gd_scene load_steps=17 format=4 uid="uid://sbtk27es35gc"]
 
 [ext_resource type="Texture2D" uid="uid://7xtal2riw81y" path="res://assets/tiles.png" id="1_vl6db"]
 [ext_resource type="Texture2D" uid="uid://bebk7nj6wk3ke" path="res://assets/player.png" id="2_0scqi"]
@@ -8,9 +8,8 @@
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="4_mac82"]
 [ext_resource type="Script" path="res://scripts/MovingPlatform.gd" id="7_0xcwb"]
 [ext_resource type="Texture2D" uid="uid://d6vg4pb1lpht" path="res://assets/temp_moving_platform.png" id="7_6nj1o"]
-[ext_resource type="Texture2D" uid="uid://domjcpap6ggyk" path="res://assets/dimension_block.png" id="10_itfbs"]
+[ext_resource type="PackedScene" uid="uid://jctv5uw84ka5" path="res://scenes/dimension_block1.tscn" id="10_smqto"]
 [ext_resource type="PackedScene" uid="uid://dc51okuii1os3" path="res://scenes/dimension_block0.tscn" id="10_y25xu"]
-[ext_resource type="Script" path="res://scripts/DimensionBlock.gd" id="11_7u4bj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3q4va"]
 texture = ExtResource("1_vl6db")
@@ -118,9 +117,6 @@ height = 24.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p3a2w"]
 size = Vector2(18, 4)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wke2t"]
-size = Vector2(48, 48)
-
 [node name="Stage 0" type="Node2D"]
 
 [node name="Camera" type="Camera2D" parent="."]
@@ -185,17 +181,4 @@ shape = SubResource("RectangleShape2D_p3a2w")
 [node name="Dimension Block_0" parent="." instance=ExtResource("10_y25xu")]
 position = Vector2(138, -83)
 
-[node name="Dimension Block_1" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.439216)
-position = Vector2(219, -34)
-texture = ExtResource("10_itfbs")
-script = ExtResource("11_7u4bj")
-
-[node name="Dimension_1_Component" parent="Dimension Block_1" instance=ExtResource("3_qbd8m")]
-
-[node name="Area2D" type="Area2D" parent="Dimension Block_1"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dimension Block_1/Area2D"]
-shape = SubResource("RectangleShape2D_wke2t")
-
-[connection signal="body_entered" from="Dimension Block_1/Area2D" to="Dimension Block_1" method="_on_area_2d_body_entered"]
+[node name="Dimension Block_1" parent="." instance=ExtResource("10_smqto")]
