@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ee12t7peq0rq"]
+[gd_scene load_steps=11 format=3 uid="uid://ee12t7peq0rq"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_gl4d5"]
 [ext_resource type="Script" path="res://scripts/StateMachine.gd" id="2_0lrxk"]
@@ -13,8 +13,16 @@
 radius = 7.0
 height = 26.0
 
-[node name="Player2" type="CharacterBody2D" groups=["Player"]]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ll07t"]
+radius = 7.0
+height = 26.0
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_gl4d5")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_ndt57")
 
 [node name="Wall Check" type="RayCast2D" parent="."]
 target_position = Vector2(12, 0)
@@ -38,9 +46,14 @@ script = ExtResource("6_m2r8c")
 [node name="Dashing" type="Node" parent="StateMachine"]
 script = ExtResource("7_x47m0")
 
-[node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
-shape = SubResource("CapsuleShape2D_ndt57")
-
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("8_3dx5k")
+
+[node name="Collision Area" type="Area2D" parent="."]
+scale = Vector2(1.04, 1.04)
+
+[node name="Collision" type="CollisionShape2D" parent="Collision Area"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_ll07t")
+
+[connection signal="body_shape_entered" from="Collision Area" to="." method="_on_collision_area_body_shape_entered"]

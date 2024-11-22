@@ -24,11 +24,11 @@ func Update(_delta : float):
 			player.jumping_from_wall = true
 			player.velocity.x = 250
 			Transitioned.emit(self, "on air")
-		if player.is_on_floor():
-			Transitioned.emit(self, "idle")
-		else:
-			if player.wall_cast.enabled and not player.wall_cast.is_colliding():
-				Transitioned.emit(self, "on air")
+	if player.is_on_floor():
+		Transitioned.emit(self, "idle")
+	else:
+		if player.wall_cast.enabled and not player.wall_cast.is_colliding():
+			Transitioned.emit(self, "on air")
 
 func Physics_Update(_delta : float):
 	player.velocity.y += player.get_gravity().y * 0.2 * _delta

@@ -14,6 +14,7 @@ var dash_speed : float = 300
 var jumping_from_wall
 var facing_right : bool = true
 
+@onready var collision_area: Area2D = $"Collision Area"
 @onready var wall_cast: RayCast2D = $"Wall Check"
 @onready var sprite: Sprite2D = $Sprite
 
@@ -31,10 +32,7 @@ func _process(delta: float) -> void:
 		facing_right = false
 		flip_player(false)
 	move_and_slide()
-	wall_cast.enabled = velocity.y > 0
-	
-func _physics_process(delta: float) -> void:
-	pass
+	wall_cast.enabled = velocity.y > -0.001 and not is_on_floor()
 
 func flip_player(to_right=true):
 	sprite.flip_h = not to_right
@@ -49,4 +47,14 @@ func reset_stamina(reset_dash=true, reset_jump=true):
 func jump_dimension(target_dimension):
 	collision_layer = target_dimension + 1
 	collision_mask = target_dimension + 1
+	collision_area.collision_layer = target_dimension + 1
+	collision_area.collision_mask = target_dimension + 1
 	wall_cast.collision_mask = target_dimension + 1
+
+func die():
+	get_tree().reload_current_scene()
+	pass
+
+func _on_collision_area_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	if body.is_in_group("Death"):
+		die()
