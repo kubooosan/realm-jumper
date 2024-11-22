@@ -1,0 +1,46 @@
+[gd_scene load_steps=10 format=3 uid="uid://ee12t7peq0rq"]
+
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_gl4d5"]
+[ext_resource type="Script" path="res://scripts/StateMachine.gd" id="2_0lrxk"]
+[ext_resource type="Script" path="res://scripts/States/Player States/PlayerIdle.gd" id="3_musxm"]
+[ext_resource type="Script" path="res://scripts/States/Player States/PlayerGroundStrafe.gd" id="4_xdpii"]
+[ext_resource type="Script" path="res://scripts/States/Player States/PlayerOnWall.gd" id="5_gnv20"]
+[ext_resource type="Script" path="res://scripts/States/Player States/PlayerOnAir.gd" id="6_m2r8c"]
+[ext_resource type="Script" path="res://scripts/States/Player States/PlayerDashing.gd" id="7_x47m0"]
+[ext_resource type="Texture2D" uid="uid://bebk7nj6wk3ke" path="res://assets/player.png" id="8_3dx5k"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ndt57"]
+radius = 7.0
+height = 26.0
+
+[node name="Player2" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_gl4d5")
+
+[node name="Wall Check" type="RayCast2D" parent="."]
+target_position = Vector2(12, 0)
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_0lrxk")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_musxm")
+
+[node name="Grounded Strafe" type="Node" parent="StateMachine"]
+script = ExtResource("4_xdpii")
+
+[node name="On Wall" type="Node" parent="StateMachine"]
+script = ExtResource("5_gnv20")
+
+[node name="On Air" type="Node" parent="StateMachine"]
+script = ExtResource("6_m2r8c")
+
+[node name="Dashing" type="Node" parent="StateMachine"]
+script = ExtResource("7_x47m0")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_ndt57")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("8_3dx5k")
