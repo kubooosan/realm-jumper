@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bbqidqefw18ps"]
 
-[ext_resource type="Script" path="res://scripts/DimensionComponent.gd" id="1_6kpib"]
+[ext_resource type="Script" path="res://scripts/Components/DimensionComponent.gd" id="1_6kpib"]
 
 [node name="Dimension_1_Component" type="Node"]
 script = ExtResource("1_6kpib")

@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://7xtal2riw81y" path="res://assets/tiles.png" id="2_jqblg"]
 [ext_resource type="PackedScene" uid="uid://dd6k83ob3g13g" path="res://scenes/components/dimension_0_component.tscn" id="3_gbuc2"]
 [ext_resource type="PackedScene" uid="uid://bbqidqefw18ps" path="res://scenes/components/dimension_1_component.tscn" id="4_eopur"]
-[ext_resource type="PackedScene" uid="uid://yly8pu4v2b83" path="res://scenes/player_1.tscn" id="5_fjnqf"]
-[ext_resource type="Script" path="res://scripts/MovingPlatform.gd" id="6_7ks5y"]
+[ext_resource type="PackedScene" path="res://scenes/player_1.tscn" id="5_fjnqf"]
+[ext_resource type="Script" path="res://scripts/deprecated/MovingPlatform.gd" id="6_7ks5y"]
 [ext_resource type="Texture2D" uid="uid://d6vg4pb1lpht" path="res://assets/temp_moving_platform.png" id="7_5s71x"]
-[ext_resource type="PackedScene" uid="uid://dc51okuii1os3" path="res://scenes/dimension_block0.tscn" id="8_cqhfc"]
-[ext_resource type="PackedScene" uid="uid://jctv5uw84ka5" path="res://scenes/dimension_block1.tscn" id="9_omoqu"]
+[ext_resource type="PackedScene" uid="uid://dc51okuii1os3" path="res://objects/dimension_block_d0.tscn" id="8_cqhfc"]
+[ext_resource type="PackedScene" uid="uid://jctv5uw84ka5" path="res://objects/dimension_block_d1.tscn" id="9_omoqu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n3lvd"]
 texture = ExtResource("2_jqblg")

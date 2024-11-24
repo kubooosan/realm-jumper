@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkdpmg42bqtlw"]
+
+[ext_resource type="Texture2D" uid="uid://cddqw1rsaexix" path="res://assets/stamina_orb.png" id="1_lplsc"]
+[ext_resource type="Script" path="res://scripts/Objects/StaminaOrb.gd" id="2_l84kd"]
+[ext_resource type="PackedScene" uid="uid://dd6k83ob3g13g" path="res://scenes/components/dimension_0_component.tscn" id="3_harda"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3lohq"]
+
+[node name="dim0 Stamina Orb" type="Sprite2D"]
+position = Vector2(308, -76)
+texture = ExtResource("1_lplsc")
+script = ExtResource("2_l84kd")
+
+[node name="Dimension_0_Component" parent="." instance=ExtResource("3_harda")]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="collision" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -0.5)
+rotation = 0.785398
+scale = Vector2(0.65126, 0.65126)
+shape = SubResource("RectangleShape2D_3lohq")
+
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]

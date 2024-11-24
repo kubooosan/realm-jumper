@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://ee12t7peq0rq"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_gl4d5"]
-[ext_resource type="Script" path="res://scripts/StateMachine.gd" id="2_0lrxk"]
+[ext_resource type="Script" path="res://scripts/States/StateMachine.gd" id="2_0lrxk"]
 [ext_resource type="Script" path="res://scripts/States/Player States/PlayerIdle.gd" id="3_musxm"]
 [ext_resource type="Script" path="res://scripts/States/Player States/PlayerGroundStrafe.gd" id="4_xdpii"]
 [ext_resource type="Script" path="res://scripts/States/Player States/PlayerOnWall.gd" id="5_gnv20"]

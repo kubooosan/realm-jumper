@@ -12,7 +12,7 @@ func Enter():
 	player.jumping_from_wall = false
 	dash_timer = max_dash_timer
 	if player.move_dir != Vector2i(0, 0):
-		dash_direction = Vector2(player.move_dir)
+		dash_direction = Vector2(player.move_dir).normalized()
 	else: 
 		if player.facing_right: dash_direction = Vector2(1,0)
 		else: dash_direction = Vector2(-1, 0)

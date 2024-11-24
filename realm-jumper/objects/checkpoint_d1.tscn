@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dd7wum71qx1ea"]
+
+[ext_resource type="Script" path="res://scripts/Objects/RespawnPointArea.gd" id="1_g7ivl"]
+[ext_resource type="PackedScene" uid="uid://bbqidqefw18ps" path="res://scenes/components/dimension_1_component.tscn" id="2_eyrda"]
+[ext_resource type="Texture2D" uid="uid://dcj6ry1vwcjqn" path="res://assets/checkpoint_marker.png" id="3_u15bk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1mbpd"]
+size = Vector2(32, 112)
+
+[node name="dim1 Checkpoint" type="Area2D"]
+position = Vector2(522, -26)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_g7ivl")
+
+[node name="Dimension_1_Component" parent="." instance=ExtResource("2_eyrda")]
+
+[node name="Area" type="CollisionShape2D" parent="."]
+position = Vector2(6, -46)
+shape = SubResource("RectangleShape2D_1mbpd")
+
+[node name="RespawnPoint" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-1, -4)
+texture = ExtResource("3_u15bk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

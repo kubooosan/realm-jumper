@@ -20,11 +20,16 @@ func Update(_delta : float):
 			Transitioned.emit(self, "on air")
 		# wall jump
 		if Input.is_action_just_pressed("jump"):
-			player.flip_player(not player.facing_right)
-			player.jumping_from_wall = true
-			if player.facing_right: player.velocity.x = -250
-			else: player.velocity.x = 250
-			Transitioned.emit(self, "on air")
+			if player.move_dir.x * distance_to_wall >= 0:
+				player.flip_player(not player.facing_right)
+				player.jumping_from_wall = true
+				if player.facing_right: player.velocity.x = -250
+				else: player.velocity.x = 250
+				Transitioned.emit(self, "on air")
+			else:
+				player.velocity.y = -250
+				await get_tree().process_frame
+				Transitioned.emit(self, "on air")
 	if player.is_on_floor():
 		Transitioned.emit(self, "idle")
 	else:

@@ -9,7 +9,7 @@ var max_jump_timer : float = .16
 var is_jumping : bool
 
 var initial_velocity : Vector2
-var max_air_velocity = Vector2(200, 850)
+var max_air_velocity = Vector2(350, 850)
 
 func Enter():
 	player = get_node("../..")

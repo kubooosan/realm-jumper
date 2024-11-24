@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dc51okuii1os3"]
 
 [ext_resource type="Texture2D" uid="uid://domjcpap6ggyk" path="res://assets/dimension_block.png" id="1_6uiq1"]
-[ext_resource type="Script" path="res://scripts/DimensionBlock.gd" id="2_8nk2x"]
+[ext_resource type="Script" path="res://scripts/Objects/DimensionBlock.gd" id="2_8nk2x"]
 [ext_resource type="PackedScene" uid="uid://dd6k83ob3g13g" path="res://scenes/components/dimension_0_component.tscn" id="3_heork"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y3ju6"]

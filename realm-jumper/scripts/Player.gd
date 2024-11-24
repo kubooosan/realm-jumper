@@ -59,5 +59,6 @@ func die():
 	pass
 
 func _on_collision_area_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	print(body.get_groups())
 	if body.is_in_group("Death"):
 		die()
