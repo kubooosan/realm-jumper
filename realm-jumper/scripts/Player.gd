@@ -4,7 +4,7 @@ extends CharacterBody2D
 var state_machine : StateMachine
 
 var move_dir : Vector2i
-var move_speed : float = 200.0
+var move_speed : float = 175.0
 
 var can_jump : bool
 var jump_speed : float = 250
@@ -21,6 +21,9 @@ var facing_right : bool = true
 func _ready() -> void:
 	state_machine = $StateMachine
 	GameManager.jumped_dimensions.connect(jump_dimension)
+	if GameManager.active_respawn_point_coordinate:
+		global_position = GameManager.active_respawn_point_coordinate
+		facing_right = GameManager.respawn_facing_right
 
 func _process(delta: float) -> void:
 	move_dir.x = Input.get_axis("left", "right")

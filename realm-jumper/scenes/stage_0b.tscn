@@ -159,7 +159,7 @@ texture = ExtResource("7_5s71x")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Normal Moving Platform/Object"]
 shape = SubResource("RectangleShape2D_p3a2w")
 
-[node name="Dimension Block_0" parent="." instance=ExtResource("8_cqhfc")]
+[node name="dim0 Dimension Block" parent="." instance=ExtResource("8_cqhfc")]
 position = Vector2(138, -83)
 
-[node name="Dimension Block_1" parent="." instance=ExtResource("9_omoqu")]
+[node name="dim1 Dimension Block" parent="." instance=ExtResource("9_omoqu")]

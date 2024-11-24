@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://c54akx2jappy8"]
+[gd_scene load_steps=19 format=4 uid="uid://c54akx2jappy8"]
 
 [ext_resource type="Texture2D" uid="uid://7xtal2riw81y" path="res://assets/tiles.png" id="1_vl6db"]
 [ext_resource type="PackedScene" uid="uid://dd6k83ob3g13g" path="res://scenes/components/dimension_0_component.tscn" id="2_d6nld"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://scripts/StaminaOrb.gd" id="10_pbgrw"]
 [ext_resource type="PackedScene" uid="uid://jctv5uw84ka5" path="res://scenes/dimension_block1.tscn" id="10_smqto"]
 [ext_resource type="PackedScene" uid="uid://dc51okuii1os3" path="res://scenes/dimension_block0.tscn" id="10_y25xu"]
+[ext_resource type="Script" path="res://scripts/RespawnPointArea.gd" id="11_cw7ga"]
+[ext_resource type="Texture2D" uid="uid://dcj6ry1vwcjqn" path="res://assets/checkpoint_marker.png" id="11_h5tpw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7omu3"]
 texture = ExtResource("1_vl6db")
@@ -120,6 +122,9 @@ sources/0 = SubResource("TileSetAtlasSource_udwvc")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3lohq"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1mbpd"]
+size = Vector2(32, 112)
+
 [node name="Stage 0_1" type="Node2D"]
 
 [node name="Camera" type="Camera2D" parent="."]
@@ -148,7 +153,7 @@ tile_set = SubResource("TileSet_v7no5")
 [node name="Dimension_1_Component" parent="dimension_1" instance=ExtResource("3_qbd8m")]
 
 [node name="Player" parent="." instance=ExtResource("5_v7poy")]
-position = Vector2(71, -27)
+position = Vector2(58, -15)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -163,10 +168,10 @@ text = "move dir: (0, 0)"
 script = ExtResource("6_gjwuk")
 player = NodePath("../../Player")
 
-[node name="Dimension Block_0" parent="." instance=ExtResource("10_y25xu")]
+[node name="dim0 Dimension Block_0" parent="." instance=ExtResource("10_y25xu")]
 position = Vector2(221, -76)
 
-[node name="Dimension Block_1" parent="." instance=ExtResource("10_smqto")]
+[node name="dim1 Dimension Block_1" parent="." instance=ExtResource("10_smqto")]
 position = Vector2(384, -78)
 
 [node name="Stamina Orb" type="Sprite2D" parent="."]
@@ -184,4 +189,20 @@ rotation = 0.785398
 scale = Vector2(0.65126, 0.65126)
 shape = SubResource("RectangleShape2D_3lohq")
 
+[node name="dim0 Checkpoint" type="Area2D" parent="."]
+position = Vector2(522, -26)
+script = ExtResource("11_cw7ga")
+
+[node name="Dimension_0_Component" parent="dim0 Checkpoint" instance=ExtResource("2_d6nld")]
+
+[node name="Area" type="CollisionShape2D" parent="dim0 Checkpoint"]
+position = Vector2(6, -46)
+shape = SubResource("RectangleShape2D_1mbpd")
+
+[node name="RespawnPoint" type="Sprite2D" parent="dim0 Checkpoint"]
+visible = false
+position = Vector2(-1, -4)
+texture = ExtResource("11_h5tpw")
+
 [connection signal="body_shape_entered" from="Stamina Orb/Area2D" to="Stamina Orb" method="_on_area_2d_body_shape_entered"]
+[connection signal="body_entered" from="dim0 Checkpoint" to="dim0 Checkpoint" method="_on_body_entered"]

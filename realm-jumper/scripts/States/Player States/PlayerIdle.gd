@@ -9,7 +9,9 @@ func Enter():
 	if not player.is_on_floor(): 
 		Transitioned.emit(self, "on air")
 	else:
-		player.velocity.x = 0
+		if player.move_dir.x != 0 or player.velocity.x != 0: 
+			Transitioned.emit(self, "grounded strafe")
+		else: player.velocity.x = 0
 
 func Update(_delta : float):
 	if not player.is_on_floor(): 
@@ -19,5 +21,5 @@ func Update(_delta : float):
 	
 	if Input.is_action_just_pressed("dash") and player.can_dash:
 		Transitioned.emit(self, "dashing")
-	elif player.move_dir.x != 0: 
+	elif player.move_dir.x != 0 or player.velocity.x != 0: 
 		Transitioned.emit(self, "grounded strafe")

@@ -9,6 +9,7 @@ var player : Player
 
 func Enter():
 	player = get_node("../..")
+	player.jumping_from_wall = false
 	dash_timer = max_dash_timer
 	if player.move_dir != Vector2i(0, 0):
 		dash_direction = Vector2(player.move_dir)
