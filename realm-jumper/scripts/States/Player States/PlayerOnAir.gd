@@ -9,7 +9,7 @@ var max_jump_timer : float = .16
 var is_jumping : bool
 
 var initial_velocity : Vector2
-var max_air_velocity = Vector2(350, 850)
+var max_air_velocity = Vector2(200, 850)
 
 func Enter():
 	player = get_node("../..")
@@ -23,15 +23,17 @@ func Enter():
 	else: is_jumping = false
 
 func Update(_delta : float):
+	# Input Handling
+	if Input.is_action_just_released("jump"): 
+		is_jumping = false
+	if Input.is_action_just_pressed("dash") and player.can_dash:
+		Transitioned.emit(self, "dashing")
 	if is_jumping and Input.is_action_pressed("jump"):
 		jump_timer -= _delta
 		if jump_timer > 0:
 			player.velocity.y = -player.jump_speed
 	elif player.is_on_floor(): 
 		Transitioned.emit(self, "idle")
-
-	if Input.is_action_just_released("jump"): 
-		is_jumping = false
 
 func Physics_Update(_delta : float):
 	# Gravity is bigger when falling
@@ -59,7 +61,3 @@ func Physics_Update(_delta : float):
 	
 	# Wall check
 	if player.wall_cast.is_colliding(): Transitioned.emit(self, "on wall")
-	
-	# Input Handling
-	if Input.is_action_just_pressed("dash") and player.can_dash:
-		Transitioned.emit(self, "dashing")

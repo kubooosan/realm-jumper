@@ -7,10 +7,11 @@ var move_dir : Vector2i
 var move_speed : float = 175.0
 
 var can_jump : bool
-var jump_speed : float = 250
+var jump_speed : float = 275
 
 var can_dash : bool
-var dash_speed : float = 300
+var dash_speed : float = 350
+signal dashed
 var jumping_from_wall
 var facing_right : bool = true
 

@@ -26,10 +26,10 @@ func Update(_delta : float):
 				if player.facing_right: player.velocity.x = -250
 				else: player.velocity.x = 250
 				Transitioned.emit(self, "on air")
-			else:
-				player.velocity.y = -250
-				await get_tree().process_frame
-				Transitioned.emit(self, "on air")
+			#else:
+				#player.velocity.y = -250
+				#await get_tree().process_frame
+				#Transitioned.emit(self, "on air")
 	if player.is_on_floor():
 		Transitioned.emit(self, "idle")
 	else:

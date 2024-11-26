@@ -3,7 +3,7 @@ class_name PlayerDashing
 
 var dash_direction : Vector2
 var dash_timer
-@export var max_dash_timer = 0.1
+@export var max_dash_timer = 0.14
 
 var player : Player
 
@@ -17,7 +17,12 @@ func Enter():
 		if player.facing_right: dash_direction = Vector2(1,0)
 		else: dash_direction = Vector2(-1, 0)
 	player.can_dash = false
-	
+	player.dashed.emit()
+
+func Update(_delta : float):
+	if Input.is_action_just_pressed("dash") and player.can_dash:
+		Transitioned.emit(self, "dashing")
+
 func Physics_Update(_delta : float):
 	dash_timer -= _delta
 	if dash_timer > 0: player.velocity = player.dash_speed * dash_direction
