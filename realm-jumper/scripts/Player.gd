@@ -7,13 +7,15 @@ var move_dir : Vector2i
 var move_speed : float = 175.0
 
 var can_jump : bool
-var jump_speed : float = 275
+var jump_speed : float = 200
 
 var can_dash : bool
 var dash_speed : float = 350
 signal dashed
 var jumping_from_wall
 var facing_right : bool = true
+
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 @onready var collision_area: Area2D = $"Collision Area"
 @onready var wall_cast: RayCast2D = $"Wall Check"
@@ -40,6 +42,7 @@ func _process(delta: float) -> void:
 
 func flip_player(to_right=true):
 	sprite.flip_h = not to_right
+	facing_right = to_right
 	if to_right: wall_cast.target_position = Vector2i(12, 0)
 	else: wall_cast.target_position = Vector2i(-12, 0)
 
@@ -60,6 +63,6 @@ func die():
 	pass
 
 func _on_collision_area_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	print(body.get_groups())
-	if body.is_in_group("Death"):
+	# print(body.get_groups())
+	if body.is_in_group(&"Death"):
 		die()

@@ -6,6 +6,7 @@ var player : Player
 func Enter():
 	player = get_node("../..")
 	player.reset_stamina()
+	if player.anim_player: player.anim_player.play("idle")
 	if not player.is_on_floor(): 
 		Transitioned.emit(self, "on air")
 	else:

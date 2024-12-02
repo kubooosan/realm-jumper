@@ -7,10 +7,15 @@ var distance_to_wall
 func Enter():
 	player = get_node("../..")
 	distance_to_wall = Vector2(player.global_position - player.wall_cast.get_collision_point()).x
-	player.global_position.x -= distance_to_wall
+	#if player.wall_cast.get_collider().is_in_group("Death"): 
+		#return
+	print(abs(distance_to_wall))
+	if abs(distance_to_wall) > 7.1:
+		player.global_position.x -= distance_to_wall
 	player.velocity = Vector2(0, 0)
-	player.can_jump = true
-	player.can_dash = true
+	player.reset_stamina()
+	player.anim_player.play("on_wall")
+	
 
 func Update(_delta : float):
 	if not player.is_on_floor():
@@ -23,13 +28,14 @@ func Update(_delta : float):
 			if player.move_dir.x * distance_to_wall >= 0:
 				player.flip_player(not player.facing_right)
 				player.jumping_from_wall = true
-				if player.facing_right: player.velocity.x = -250
-				else: player.velocity.x = 250
+				if player.facing_right: player.velocity.x = 250
+				else: player.velocity.x = -250
+
 				Transitioned.emit(self, "on air")
-			#else:
-				#player.velocity.y = -250
-				#await get_tree().process_frame
-				#Transitioned.emit(self, "on air")
+		if Input.is_action_just_pressed("dash") and player.move_dir != Vector2i.ZERO:
+			Transitioned.emit(self, "dashing")
+				
+
 	if player.is_on_floor():
 		Transitioned.emit(self, "idle")
 	else:

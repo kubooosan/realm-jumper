@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8uuse48rroyh"]
+
+[ext_resource type="Texture2D" uid="uid://d0jc04rb7xvsr" path="res://assets/dashgate_temp.png" id="1_irxpq"]
+[ext_resource type="Script" path="res://scripts/Objects/DashGate.gd" id="2_p53fc"]
+[ext_resource type="PackedScene" uid="uid://dd6k83ob3g13g" path="res://scenes/components/dimension_0_component.tscn" id="3_yqwwi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5uxeh"]
+size = Vector2(12, 32)
+
+[node name="dim0 Dashgate" type="Sprite2D" node_paths=PackedStringArray("dimension_component")]
+position = Vector2(552, -32)
+texture = ExtResource("1_irxpq")
+script = ExtResource("2_p53fc")
+dimension_component = NodePath("Dimension_0_Component")
+
+[node name="Dimension_0_Component" parent="." instance=ExtResource("3_yqwwi")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_5uxeh")

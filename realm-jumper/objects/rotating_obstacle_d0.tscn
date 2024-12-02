@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://d222fknrghr11"]
+
+[ext_resource type="Script" path="res://scripts/Objects/RotatingObstacle.gd" id="1_7cqf6"]
+[ext_resource type="PackedScene" uid="uid://dd6k83ob3g13g" path="res://scenes/components/dimension_0_component.tscn" id="2_bakoo"]
+[ext_resource type="Texture2D" uid="uid://dlmxhqvjf6hfk" path="res://assets/evil platform.png" id="3_y4ng1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3tmuq"]
+size = Vector2(30, 10)
+
+[node name="dim0 Rotating Obstacle" type="Node2D" node_paths=PackedStringArray("child_obstacle") groups=["Death"]]
+position = Vector2(606, -22)
+script = ExtResource("1_7cqf6")
+radius = 0
+child_obstacle = NodePath("Sprite")
+
+[node name="Dimension_0_Component" parent="." instance=ExtResource("2_bakoo")]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_y4ng1")
+
+[node name="Body" type="AnimatableBody2D" parent="Sprite"]
+sync_to_physics = false
+
+[node name="Platform Collision" type="CollisionShape2D" parent="Sprite/Body"]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_3tmuq")
+
+[node name="Death" type="StaticBody2D" parent="Sprite" groups=["Death"]]
+
+[node name="Death Collision" type="CollisionPolygon2D" parent="Sprite/Death" groups=["Death"]]
+polygon = PackedVector2Array(-14, -4, -18, -4, -18, -2, -16, 8, -6, 10, 8, 10, 18, 8, 20, -2, 20, -4, 16, -5, 16, 4, -14, 4)

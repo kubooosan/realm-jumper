@@ -6,6 +6,7 @@ var player : Player
 func Enter():
 	player = get_node("../..")
 	if player.is_on_floor(): player.reset_stamina()
+	player.anim_player.play("running")
 
 func Update(_delta : float):
 	# Input Handling

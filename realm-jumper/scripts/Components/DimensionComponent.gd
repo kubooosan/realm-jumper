@@ -18,9 +18,9 @@ func jumped_to_dimension(target_dimension : int):
 	else: disable_object()
 
 func enable_object():
-	parent_node.visible = true
+	if parent_node: parent_node.visible = true
 	object_is_active = true
 
 func disable_object():
-	parent_node.visible = false
+	if parent_node: parent_node.visible = false
 	object_is_active = false

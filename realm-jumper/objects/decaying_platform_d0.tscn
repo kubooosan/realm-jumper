@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmi740v1ighes"]
+
+[ext_resource type="Script" path="res://scripts/Objects/DecayingPlatform.gd" id="1_bx5lk"]
+[ext_resource type="PackedScene" uid="uid://dd6k83ob3g13g" path="res://scenes/components/dimension_0_component.tscn" id="2_qe4up"]
+[ext_resource type="Texture2D" uid="uid://by52p4jv68koj" path="res://assets/decaying_platform.png" id="3_symta"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xl184"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bx4th"]
+size = Vector2(16, 16)
+
+[node name="DecayingPlatform" type="StaticBody2D" node_paths=PackedStringArray("dimension_component")]
+script = ExtResource("1_bx5lk")
+dimension_component = NodePath("Dimension_0_Component")
+
+[node name="Dimension_0_Component" parent="." instance=ExtResource("2_qe4up")]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_repeat = 2
+texture = ExtResource("3_symta")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xl184")
+
+[node name="Area" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="Area"]
+scale = Vector2(1.035, 1.035)
+shape = SubResource("RectangleShape2D_bx4th")
+debug_color = Color(0.705893, 0.374811, 0.802334, 0.42)
+
+[connection signal="area_shape_entered" from="Area" to="." method="_on_area_area_shape_entered"]

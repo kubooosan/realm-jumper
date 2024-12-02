@@ -18,8 +18,9 @@ func _process(delta: float) -> void:
 
 func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body.is_in_group("Player") and is_collectable:
-		print(self, "collected")
 		var player : Player = body
+		if player.can_dash: return
+		print(self, "collected")
 		is_collectable = false
 		player.reset_stamina(true, false)
 		collected()
@@ -27,7 +28,6 @@ func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_inde
 func collected():
 	is_collectable = false
 	cooldown_timer = cooldown_time
-	pass
 
 func set_collectable(new_value):
 	if new_value == true:
