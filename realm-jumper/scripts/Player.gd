@@ -4,24 +4,25 @@ extends CharacterBody2D
 var state_machine : StateMachine
 
 var move_dir : Vector2i
-var move_speed : float = 175.0
+var move_speed : float = 160
 
 var can_jump : bool
-var jump_speed : float = 200
+var jump_speed : float = 225
 
 var can_dash : bool
-var dash_speed : float = 350
+var dash_speed : float = 325
 signal dashed
 var jumping_from_wall
 var facing_right : bool = true
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
-
+@onready var audio_player: AudioStreamPlayer2D = $"Player Audio"
 @onready var collision_area: Area2D = $"Collision Area"
 @onready var wall_cast: RayCast2D = $"Wall Check"
 @onready var sprite: Sprite2D = $Sprite
 
 func _ready() -> void:
+	audio_player.bus = "PlayerSFX" 
 	state_machine = $StateMachine
 	GameManager.jumped_dimensions.connect(jump_dimension)
 	if GameManager.active_respawn_point_coordinate:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ee12t7peq0rq"]
+[gd_scene load_steps=32 format=3 uid="uid://ee12t7peq0rq"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_gl4d5"]
 [ext_resource type="Script" path="res://scripts/States/StateMachine.gd" id="2_0lrxk"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://bdyre8eit2gnu" path="res://assets/PlayerAnimations/player_dashing/player_dash2.png" id="19_ppc3l"]
 [ext_resource type="Texture2D" uid="uid://dqguf2aw3rqrp" path="res://assets/PlayerAnimations/player_on_air.png" id="20_5co6c"]
 [ext_resource type="Texture2D" uid="uid://ctspr6xy466r0" path="res://assets/PlayerAnimations/player_dashing/player_dash3.png" id="20_h2oo1"]
+[ext_resource type="Texture2D" uid="uid://bnupgkql5auko" path="res://assets/textures/light_texture_1.png" id="21_qcy56"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ndt57"]
 radius = 7.0
@@ -136,8 +137,16 @@ _data = {
 "running": SubResource("Animation_h2yqk")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_63kds"]
+radius = 61.3922
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_gl4d5")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.51
+shadow_enabled = true
+texture = ExtResource("21_qcy56")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
@@ -182,5 +191,13 @@ debug_color = Color(0.763498, 0, 0.392665, 0.42)
 libraries = {
 "": SubResource("AnimationLibrary_kau1u")
 }
+
+[node name="Light Radius" type="Area2D" parent="." groups=["Light"]]
+
+[node name="Collision" type="CollisionShape2D" parent="Light Radius"]
+shape = SubResource("CircleShape2D_63kds")
+
+[node name="Player Audio" type="AudioStreamPlayer2D" parent="."]
+max_polyphony = 3
 
 [connection signal="body_shape_entered" from="Collision Area" to="." method="_on_collision_area_body_shape_entered"]

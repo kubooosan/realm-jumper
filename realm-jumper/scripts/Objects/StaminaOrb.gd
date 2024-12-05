@@ -9,7 +9,7 @@ var cooldown_timer : float
 const STAMINA_ORB = preload("res://assets/stamina_orb.png")
 const STAMINA_ORB_EMPTY = preload("res://assets/stamina_orb_empty.png")
 
-
+var time : float
 func _process(delta: float) -> void:
 	cooldown_timer -= delta
 	if cooldown_timer <= 0 and is_collectable == false:

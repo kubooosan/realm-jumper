@@ -11,9 +11,14 @@ var is_jumping : bool
 var initial_velocity : Vector2
 var max_air_velocity = Vector2(200, 850)
 
+var lock_movement_timer : float
+
 func Enter():
 	player = get_node("../..")
 	player.anim_player.play("on_air")
+	# Entered because of wall jumping
+	if player.jumping_from_wall:
+		lock_movement_timer = .2
 	# Entered on air because of jumping
 	if player.can_jump and Input.is_action_pressed("jump"):
 		initial_velocity = player.velocity
@@ -24,6 +29,8 @@ func Enter():
 	else: is_jumping = false
 
 func Update(_delta : float):
+	if lock_movement_timer > 0: 
+		lock_movement_timer -= _delta
 	# Input Handling
 	if Input.is_action_just_released("jump"): 
 		is_jumping = false
@@ -47,14 +54,14 @@ func Physics_Update(_delta : float):
 	if player.move_dir.x == 0 and not player.jumping_from_wall: 
 		player.velocity.x = move_toward(player.velocity.x, 0, 700 * _delta)
 
-	if player.move_dir.x != 0:
+	if player.move_dir.x != 0 and lock_movement_timer <= 0:
 		player.velocity.x += player.move_dir.x * player.move_speed * _delta * 6
 	
 	player.velocity.x = clampf(player.velocity.x, -max_air_velocity.x, max_air_velocity.x)
 	player.velocity.y = clampf(player.velocity.y, -max_air_velocity.y, max_air_velocity.y)
 
-	# Wall check
-	if player.wall_cast.is_colliding() and not player.wall_cast.get_collider().is_in_group("Death"): 
+	# Wall check 
+	if player.wall_cast.is_colliding() and not player.wall_cast.get_collider().is_in_group("Death") and lock_movement_timer <= 0: 
 		Transitioned.emit(self, "on wall")
 	
 	

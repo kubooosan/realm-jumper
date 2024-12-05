@@ -9,6 +9,11 @@ var player : Player
 
 func Enter():
 	player = get_node("../..")
+	# Play Dash Audio
+	player.audio_player.stream = preload("res://audio/sfx/sand-step.ogg")
+	player.audio_player.pitch_scale = randf_range(1, 1.8)
+	player.audio_player.play()
+	
 	player.jumping_from_wall = false
 	dash_timer = max_dash_timer
 	player.anim_player.play("dashing")
@@ -32,7 +37,7 @@ func Physics_Update(_delta : float):
 		player.velocity = player.dash_speed * dash_direction
 	else:
 		if player.is_on_floor():
-			player.velocity.x = move_toward(player.velocity.x, 0, 800 * _delta)
+			player.velocity.x = move_toward(player.velocity.x, 0, 900 * _delta)
 			if player.velocity.x == 0: Transitioned.emit(self, "idle")
 		else:
 			Transitioned.emit(self, "on air")

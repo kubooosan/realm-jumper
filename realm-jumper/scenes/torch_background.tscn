@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://ct4jgf8ad7nhe"]
+
+[ext_resource type="Texture2D" uid="uid://b8q0kw55u1ync" path="res://assets/tilemaps/torch_bg.png" id="1_sqlj1"]
+[ext_resource type="Script" path="res://scripts/Objects/TorchBackground.gd" id="2_sfgbr"]
+[ext_resource type="Texture2D" uid="uid://bnupgkql5auko" path="res://assets/textures/light_texture_1.png" id="3_ermu2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aqod7"]
+size = Vector2(14, 14)
+
+[node name="Torch Background" type="Sprite2D"]
+texture = ExtResource("1_sqlj1")
+script = ExtResource("2_sfgbr")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_aqod7")
+
+[node name="Light" type="PointLight2D" parent="."]
+visible = false
+color = Color(1, 1, 1, 0.568627)
+energy = 1.05
+shadow_enabled = true
+texture = ExtResource("3_ermu2")
+texture_scale = 1.65
+
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_shape_entered"]

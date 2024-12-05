@@ -7,7 +7,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3lohq"]
 
 [node name="dim0 Stamina Orb" type="Sprite2D"]
-position = Vector2(308, -76)
 texture = ExtResource("1_lplsc")
 script = ExtResource("2_l84kd")
 
