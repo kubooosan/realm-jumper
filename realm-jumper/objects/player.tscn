@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://ee12t7peq0rq"]
+[gd_scene load_steps=33 format=3 uid="uid://ee12t7peq0rq"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_gl4d5"]
 [ext_resource type="Script" path="res://scripts/States/StateMachine.gd" id="2_0lrxk"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/States/Player States/PlayerOnAir.gd" id="6_m2r8c"]
 [ext_resource type="Script" path="res://scripts/States/Player States/PlayerDashing.gd" id="7_x47m0"]
 [ext_resource type="Texture2D" uid="uid://cjq0cktic1ok5" path="res://assets/PlayerAnimations/player_idle/player_idle1.png" id="8_uc6y7"]
+[ext_resource type="Script" path="res://scripts/States/Player States/PlayerDeath.gd" id="9_7t1gi"]
 [ext_resource type="Texture2D" uid="uid://cirofekd3v176" path="res://assets/PlayerAnimations/player_idle/player_idle2.png" id="9_fo58p"]
 [ext_resource type="Texture2D" uid="uid://d1maffvrdctxy" path="res://assets/PlayerAnimations/player_running/player_running1.png" id="10_dxh8x"]
 [ext_resource type="Texture2D" uid="uid://byuda73w2wruf" path="res://assets/PlayerAnimations/player_running/player_running2.png" id="11_dx20g"]
@@ -174,6 +175,9 @@ script = ExtResource("6_m2r8c")
 
 [node name="Dashing" type="Node" parent="StateMachine"]
 script = ExtResource("7_x47m0")
+
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource("9_7t1gi")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("8_uc6y7")

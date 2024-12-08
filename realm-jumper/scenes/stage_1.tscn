@@ -1,11 +1,15 @@
-[gd_scene load_steps=28 format=4 uid="uid://cqfmpyen5vbf2"]
+[gd_scene load_steps=32 format=4 uid="uid://cqfmpyen5vbf2"]
 
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="1_udxw7"]
 [ext_resource type="Texture2D" uid="uid://7xtal2riw81y" path="res://assets/tiles.png" id="2_amx2o"]
+[ext_resource type="Texture2D" uid="uid://dq5oa7hibb0mx" path="res://assets/backgrounds/LV 1 Backround 1.png" id="2_on404"]
 [ext_resource type="PackedScene" uid="uid://ct4jgf8ad7nhe" path="res://scenes/torch_background.tscn" id="3_kop7q"]
+[ext_resource type="Texture2D" uid="uid://cipxntdd6e3w5" path="res://assets/backgrounds/LV 1 Backround 6.png" id="3_mrld3"]
 [ext_resource type="Texture2D" uid="uid://bxouxl84ov785" path="res://assets/tilemaps/main_tilemap.png" id="3_pynpg"]
 [ext_resource type="PackedScene" uid="uid://dd6k83ob3g13g" path="res://scenes/components/dimension_0_component.tscn" id="4_0ladl"]
+[ext_resource type="Texture2D" uid="uid://3yisf0qdlcxs" path="res://assets/backgrounds/LV 1 Backround 5.png" id="4_4rq6b"]
 [ext_resource type="PackedScene" uid="uid://bbqidqefw18ps" path="res://scenes/components/dimension_1_component.tscn" id="5_3sdnb"]
+[ext_resource type="Texture2D" uid="uid://bam1bgn8okv41" path="res://assets/backgrounds/LV 1 Backround 4.png" id="5_wfo0y"]
 [ext_resource type="Texture2D" uid="uid://c328re8pkl42k" path="res://assets/backgrounds/LV 1 Backround 3.png" id="6_adq4t"]
 [ext_resource type="PackedScene" uid="uid://ee12t7peq0rq" path="res://objects/player.tscn" id="6_eoexh"]
 [ext_resource type="Script" path="res://scripts/Debugging/_PlayerDebug.gd" id="7_k81ux"]
@@ -390,21 +394,71 @@ libraries = {
 "": SubResource("AnimationLibrary_31pdg")
 }
 
-[node name="Node2D" type="Node2D" parent="CanvasLayer"]
+[node name="Background" type="Node2D" parent="CanvasLayer"]
+position = Vector2(0, -225.373)
 
-[node name="Parallax2D2" type="Parallax2D" parent="CanvasLayer/Node2D"]
+[node name="Layer 1" type="Parallax2D" parent="CanvasLayer/Background"]
+scroll_scale = Vector2(1, 0.995)
+
+[node name="Sprite2D" type="TextureRect" parent="CanvasLayer/Background/Layer 1"]
+offset_top = 212.0
+offset_bottom = 212.0
+scale = Vector2(5, 5)
+texture = ExtResource("2_on404")
+
+[node name="Layer 2" type="Parallax2D" parent="CanvasLayer/Background"]
 repeat_size = Vector2(1280, 0)
+autoscroll = Vector2(5, 0)
+repeat_times = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Node2D/Parallax2D2"]
-position = Vector2(0, 212)
+[node name="Sprite2D" type="TextureRect" parent="CanvasLayer/Background/Layer 2"]
+offset_top = 212.0
+offset_bottom = 212.0
+scale = Vector2(5, 5)
+texture = ExtResource("3_mrld3")
+
+[node name="Layer 3" type="Parallax2D" parent="CanvasLayer/Background"]
+repeat_size = Vector2(1280, 0)
+autoscroll = Vector2(4, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="TextureRect" parent="CanvasLayer/Background/Layer 3"]
+offset_top = 212.0
+offset_bottom = 212.0
+scale = Vector2(5, 5)
+texture = ExtResource("4_4rq6b")
+
+[node name="Layer 4" type="Parallax2D" parent="CanvasLayer/Background"]
+repeat_size = Vector2(1280, 0)
+autoscroll = Vector2(3, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="TextureRect" parent="CanvasLayer/Background/Layer 4"]
+offset_top = 212.0
+offset_bottom = 212.0
+scale = Vector2(5, 5)
+texture = ExtResource("5_wfo0y")
+
+[node name="Layer 5" type="Parallax2D" parent="CanvasLayer/Background"]
+repeat_size = Vector2(1280, 0)
+autoscroll = Vector2(2, 0)
+repeat_times = 4
+
+[node name="Sprite2D" type="TextureRect" parent="CanvasLayer/Background/Layer 5"]
+offset_top = 212.0
+offset_bottom = 212.0
 scale = Vector2(5, 5)
 texture = ExtResource("6_adq4t")
 
-[node name="Parallax2D" type="Parallax2D" parent="CanvasLayer/Node2D"]
+[node name="Layer 6" type="Parallax2D" parent="CanvasLayer/Background"]
 repeat_size = Vector2(1280, 0)
+autoscroll = Vector2(1, 0)
+repeat_times = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Node2D/Parallax2D"]
-position = Vector2(0, 212)
+[node name="Sprite2D" type="TextureRect" parent="CanvasLayer/Background/Layer 6"]
+texture_repeat = 3
+offset_top = 212.0
+offset_bottom = 212.0
 scale = Vector2(5, 5)
 texture = ExtResource("7_kxrxe")
 

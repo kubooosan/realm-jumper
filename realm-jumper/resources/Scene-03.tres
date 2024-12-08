@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=3 format=3 uid="uid://bj0awopc3knoi"]
+
+[ext_resource type="Texture2D" uid="uid://btwqcef11h8kt" path="res://assets/Cutscene/Cutscene-3.png" id="1_db2bb"]
+[ext_resource type="Script" path="res://scripts/Cutscene.gd" id="2_rut7h"]
+
+[resource]
+script = ExtResource("2_rut7h")
+image = ExtResource("1_db2bb")
+texts = Array[String](["One day, Kael’s father set off on yet another adventure, but this time, Kael had no idea it would be the last. Days stretched into weeks, then months, and eventually years.", "Kael waited with hope for his father’s return, but no news ever came...", "Years passed, and Kael grew accustomed to the silence left in his father’s absence."])

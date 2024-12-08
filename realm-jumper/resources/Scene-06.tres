@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=3 format=3 uid="uid://cba0c2gpk8nfj"]
+
+[ext_resource type="Texture2D" uid="uid://dq5e8jxrhdwds" path="res://assets/Cutscene/Cutscene-6.jpg" id="1_5ba2a"]
+[ext_resource type="Script" path="res://scripts/Cutscene.gd" id="2_p7528"]
+
+[resource]
+script = ExtResource("2_p7528")
+image = ExtResource("1_5ba2a")
+texts = Array[String](["Kael stared at the compass in his hand, his expression hardening. The weight of the moment pressed heavily on his chest. Determination flickered in his eyes as he clutched the artifact tightly.", "He had made his choice. No longer would he remain bound by his quiet life. It was time for him to follow the path his father had left behind."])

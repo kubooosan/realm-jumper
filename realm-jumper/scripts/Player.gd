@@ -59,11 +59,13 @@ func jump_dimension(target_dimension):
 	collision_area.collision_mask = target_dimension + 1
 	wall_cast.collision_mask = target_dimension + 1
 
-func die():
-	get_tree().reload_current_scene()
-	pass
+func respawn():
+	var current_scene : PackedScene = PackedScene.new()
+	current_scene.pack(get_tree().current_scene)
+	GameManager.change_scene(current_scene)
 
 func _on_collision_area_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	# print(body.get_groups())
 	if body.is_in_group(&"Death"):
-		die()
+		state_machine.current_state.Transitioned.emit(state_machine.current_state, "Death")
+		respawn()

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://p72tphrhk7y4"]
+
+[ext_resource type="Texture2D" uid="uid://bqilsn3vdl2bw" path="res://assets/Cutscene/transition_circle.png" id="1_6ok34"]
+[ext_resource type="Script" path="res://scripts/Transition.gd" id="2_62thy"]
+
+[node name="Transition" type="CanvasLayer"]
+
+[node name="Transition_Rect" type="TextureRect" parent="."]
+z_index = 10
+offset_left = -122.0
+offset_top = -408.0
+offset_right = 1403.0
+offset_bottom = 1117.0
+pivot_offset = Vector2(762, 761)
+mouse_filter = 0
+texture = ExtResource("1_6ok34")
+script = ExtResource("2_62thy")

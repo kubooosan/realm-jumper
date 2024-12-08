@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=3 format=3 uid="uid://bpo7gwhuum66x"]
+
+[ext_resource type="Texture2D" uid="uid://c0fvew07jumin" path="res://assets/Cutscene/Cutscene-4.jpg" id="1_oiaqv"]
+[ext_resource type="Script" path="res://scripts/Cutscene.gd" id="2_pvntt"]
+
+[resource]
+script = ExtResource("2_pvntt")
+image = ExtResource("1_oiaqv")
+texts = Array[String](["Flipping through the journal, Kael stopped at a page that seemed different. Strange symbols and cryptic phrases were scrawled in the margins, accompanied by crude sketches of unknown landscapes.", "Tucked into the binding was an old, weathered map with an X marking an unknown location. The clues were there, waiting for Kael to uncover their meaning."])

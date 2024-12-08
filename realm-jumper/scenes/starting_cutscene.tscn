@@ -1,0 +1,64 @@
+[gd_scene load_steps=13 format=3 uid="uid://daxdlt57jik2b"]
+
+[ext_resource type="Texture2D" uid="uid://dwmqig7p11ao" path="res://assets/Cutscene/Cutscene-1.jpg" id="1_o7dm0"]
+[ext_resource type="Script" path="res://scripts/CutsceneManager.gd" id="2_yb2af"]
+[ext_resource type="Script" path="res://scripts/Cutscene.gd" id="3_f5cb3"]
+[ext_resource type="Resource" uid="uid://dhwj584afto3l" path="res://resources/Scene-01.tres" id="4_2tloj"]
+[ext_resource type="Texture2D" uid="uid://ci4jyvpl0e38h" path="res://assets/Cutscene/textbox.png" id="4_soa2q"]
+[ext_resource type="Resource" uid="uid://wuoya24xn8iq" path="res://resources/Scene-02.tres" id="5_qbvcg"]
+[ext_resource type="Resource" uid="uid://bj0awopc3knoi" path="res://resources/Scene-03.tres" id="6_4u8er"]
+[ext_resource type="Resource" uid="uid://bwaq6mn1wkj0v" path="res://resources/Scene-04.tres" id="7_gfe6v"]
+[ext_resource type="Resource" uid="uid://bpo7gwhuum66x" path="res://resources/Scene-05.tres" id="8_tgea5"]
+[ext_resource type="Resource" uid="uid://cba0c2gpk8nfj" path="res://resources/Scene-06.tres" id="9_33c4e"]
+[ext_resource type="PackedScene" uid="uid://cqfmpyen5vbf2" path="res://scenes/stage_1.tscn" id="10_8vtx5"]
+[ext_resource type="FontFile" uid="uid://dtxhrbp4ud8ph" path="res://assets/fonts/GamePaused.otf" id="11_iiukr"]
+
+[node name="Starting Cutscene" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CutsceneManager" type="TextureRect" parent="CanvasLayer"]
+offset_left = 192.0
+offset_top = 21.0
+offset_right = 1472.0
+offset_bottom = 741.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_o7dm0")
+expand_mode = 1
+script = ExtResource("2_yb2af")
+scenes = Array[ExtResource("3_f5cb3")]([ExtResource("4_2tloj"), ExtResource("5_qbvcg"), ExtResource("6_4u8er"), ExtResource("7_gfe6v"), ExtResource("8_tgea5"), ExtResource("9_33c4e")])
+next_scene = ExtResource("10_8vtx5")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+z_index = -2
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="CanvasLayer"]
+color = Color(0, 0, 0, 1)
+
+[node name="Textbox" type="TextureRect" parent="CanvasLayer"]
+visible = false
+offset_left = 192.0
+offset_top = 541.0
+offset_right = 1088.0
+offset_bottom = 709.0
+texture = ExtResource("4_soa2q")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Textbox"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 17.0
+offset_right = 875.0
+offset_bottom = 143.0
+theme_override_constants/line_separation = 6
+theme_override_fonts/normal_font = ExtResource("11_iiukr")
+theme_override_font_sizes/normal_font_size = 26
+bbcode_enabled = true
+text = "Kael sat quietly in his living room, his cat curled up in his lap as he flipped through the pages of a book. The quiet hum of the evening surrounded him, the soft light from the lamp casting a warm glow."
+fit_content = true
+visible_characters_behavior = 1
+
+[connection signal="gui_input" from="CanvasLayer/CutsceneManager" to="CanvasLayer/CutsceneManager" method="_on_gui_input"]

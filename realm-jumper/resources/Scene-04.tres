@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=3 format=3 uid="uid://bwaq6mn1wkj0v"]
+
+[ext_resource type="Texture2D" uid="uid://bugx688aktwrt" path="res://assets/Cutscene/Cutscene-5.png" id="1_2gm7k"]
+[ext_resource type="Script" path="res://scripts/Cutscene.gd" id="2_pi0h1"]
+
+[resource]
+script = ExtResource("2_pi0h1")
+image = ExtResource("1_2gm7k")
+texts = Array[String](["One day, as he was tidying up the small corner of the house his father had used as a workspace, something caught his eye. Sitting on the dusty table was his father’s journal.", "Beside it lay a peculiar golden compass, its ornate design glinting faintly in the light. With a deep breath, he reached for the journal. ", "This was no ordinary find—this was a thread leading back to the father he had lost."])

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=3 format=3 uid="uid://wuoya24xn8iq"]
+
+[ext_resource type="Texture2D" uid="uid://pny58yexjxf4" path="res://assets/Cutscene/Cutscene-2.jpg" id="1_660se"]
+[ext_resource type="Script" path="res://scripts/Cutscene.gd" id="2_w23r6"]
+
+[resource]
+script = ExtResource("2_w23r6")
+image = ExtResource("1_660se")
+texts = Array[String](["Years ago, Kael and his father would often sit together on the old red couch. His father’s animated gestures brought his stories of ancient ruins and daring adventures to life.", "Young Kael watched with wide eyed wonder, captivated by every word. Those cherished moments sparked a curiosity within him that never faded."])

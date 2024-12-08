@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Cutscene" load_steps=3 format=3 uid="uid://dhwj584afto3l"]
+
+[ext_resource type="Texture2D" uid="uid://dwmqig7p11ao" path="res://assets/Cutscene/Cutscene-1.jpg" id="1_lv6lw"]
+[ext_resource type="Script" path="res://scripts/Cutscene.gd" id="1_s1pd7"]
+
+[resource]
+script = ExtResource("1_s1pd7")
+image = ExtResource("1_lv6lw")
+texts = Array[String](["Kael sat quietly in his living room, his cat curled up in his lap as he flipped through the pages of a book. The quiet hum of the evening surrounded him, the soft light from the lamp casting a warm glow.", "His life is simple and uneventful, filled with small comforts like late night reading with the companionship of his furry friend. For Kael, this ordinary routine was all he had ever known", "His father, however, was far from ordinary...                       "])
