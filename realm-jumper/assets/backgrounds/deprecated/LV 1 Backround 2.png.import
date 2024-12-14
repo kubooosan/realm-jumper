@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bam1bgn8okv41"
-path="res://.godot/imported/LV 1 Backround 4.png-eb9dedfcffb5847fce763be7e1470114.ctex"
+uid="uid://bimd0gm7sv64o"
+path="res://.godot/imported/LV 1 Backround 2.png-de4833f23c27984d37b1ab617fda24e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/backgrounds/LV 1 Backround 4.png"
-dest_files=["res://.godot/imported/LV 1 Backround 4.png-eb9dedfcffb5847fce763be7e1470114.ctex"]
+source_file="res://assets/backgrounds/deprecated/LV 1 Backround 2.png"
+dest_files=["res://.godot/imported/LV 1 Backround 2.png-de4833f23c27984d37b1ab617fda24e7.ctex"]
 
 [params]
 

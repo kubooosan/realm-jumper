@@ -5,6 +5,9 @@ var player : Player
 
 var step_sfx_array = [preload("res://audio/sfx/walking1.mp3"), preload("res://audio/sfx/walking2.mp3"), preload("res://audio/sfx/walking3.mp3")]
 
+var coyote_timer = 0
+var max_coyote_timer = .13
+
 func Enter():
 	player = get_node("../..")
 	if player.is_on_floor(): player.reset_stamina()
@@ -23,9 +26,12 @@ func Update(_delta : float):
 		Transitioned.emit(self, "dashing")
 	
 	if not player.is_on_floor():
-		Transitioned.emit(self, "on air")
+		coyote_timer += _delta
+		if coyote_timer > max_coyote_timer:
+			Transitioned.emit(self, "on air")
 	elif player.velocity.x == 0:
 		Transitioned.emit(self, "idle")
+	else: coyote_timer = 0
 	
 	player.velocity.x = player.move_dir.x * player.move_speed
 		

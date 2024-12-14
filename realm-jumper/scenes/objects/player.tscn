@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://ee12t7peq0rq"]
+[gd_scene load_steps=37 format=3 uid="uid://ee12t7peq0rq"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_gl4d5"]
 [ext_resource type="Script" path="res://scripts/States/StateMachine.gd" id="2_0lrxk"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/States/Player States/PlayerDeath.gd" id="9_7t1gi"]
 [ext_resource type="Texture2D" uid="uid://cirofekd3v176" path="res://assets/PlayerAnimations/player_idle/player_idle2.png" id="9_fo58p"]
 [ext_resource type="Texture2D" uid="uid://d1maffvrdctxy" path="res://assets/PlayerAnimations/player_running/player_running1.png" id="10_dxh8x"]
+[ext_resource type="Script" path="res://scripts/States/Player States/PlayerFreeze.gd" id="10_edbsp"]
 [ext_resource type="Texture2D" uid="uid://byuda73w2wruf" path="res://assets/PlayerAnimations/player_running/player_running2.png" id="11_dx20g"]
 [ext_resource type="Texture2D" uid="uid://dpyqc4xddxsrx" path="res://assets/PlayerAnimations/player_running/player_running3.png" id="12_boxg7"]
 [ext_resource type="Texture2D" uid="uid://2ocwx6kf2scd" path="res://assets/PlayerAnimations/player_running/player_running4.png" id="13_piqwo"]
@@ -22,6 +23,9 @@
 [ext_resource type="Texture2D" uid="uid://dqguf2aw3rqrp" path="res://assets/PlayerAnimations/player_on_air.png" id="20_5co6c"]
 [ext_resource type="Texture2D" uid="uid://ctspr6xy466r0" path="res://assets/PlayerAnimations/player_dashing/player_dash3.png" id="20_h2oo1"]
 [ext_resource type="Texture2D" uid="uid://bnupgkql5auko" path="res://assets/textures/light_texture_1.png" id="21_qcy56"]
+[ext_resource type="Texture2D" uid="uid://ci4jyvpl0e38h" path="res://assets/Cutscene/textbox.png" id="23_yf3l1"]
+[ext_resource type="FontFile" uid="uid://dtxhrbp4ud8ph" path="res://assets/fonts/GamePaused.otf" id="24_5xixw"]
+[ext_resource type="Script" path="res://scripts/PlayerTextbox.gd" id="24_dmdhj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ndt57"]
 radius = 7.0
@@ -145,6 +149,7 @@ radius = 61.3922
 script = ExtResource("1_gl4d5")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 energy = 0.51
 shadow_enabled = true
 texture = ExtResource("21_qcy56")
@@ -152,6 +157,11 @@ texture = ExtResource("21_qcy56")
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_ndt57")
+
+[node name="Interact Check" type="RayCast2D" parent="."]
+target_position = Vector2(15, 0)
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="Wall Check" type="RayCast2D" parent="."]
 target_position = Vector2(12, 0)
@@ -179,6 +189,9 @@ script = ExtResource("7_x47m0")
 [node name="Death" type="Node" parent="StateMachine"]
 script = ExtResource("9_7t1gi")
 
+[node name="Freeze" type="Node" parent="StateMachine"]
+script = ExtResource("10_edbsp")
+
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("8_uc6y7")
 
@@ -197,11 +210,37 @@ libraries = {
 }
 
 [node name="Light Radius" type="Area2D" parent="." groups=["Light"]]
+visible = false
 
 [node name="Collision" type="CollisionShape2D" parent="Light Radius"]
 shape = SubResource("CircleShape2D_63kds")
 
 [node name="Player Audio" type="AudioStreamPlayer2D" parent="."]
 max_polyphony = 3
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Textbox" type="TextureRect" parent="UI"]
+visible = false
+offset_left = 192.0
+offset_top = 541.0
+offset_right = 1088.0
+offset_bottom = 709.0
+texture = ExtResource("23_yf3l1")
+script = ExtResource("24_dmdhj")
+
+[node name="Text" type="RichTextLabel" parent="UI/Textbox"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 17.0
+offset_right = 875.0
+offset_bottom = 143.0
+theme_override_constants/line_separation = 6
+theme_override_fonts/normal_font = ExtResource("24_5xixw")
+theme_override_font_sizes/normal_font_size = 26
+bbcode_enabled = true
+text = "Kael sat quietly in his living room, his cat curled up in his lap as he flipped through the pages of a book. The quiet hum of the evening surrounded him, the soft light from the lamp casting a warm glow."
+fit_content = true
+visible_characters_behavior = 1
 
 [connection signal="body_shape_entered" from="Collision Area" to="." method="_on_collision_area_body_shape_entered"]

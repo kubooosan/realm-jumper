@@ -20,11 +20,18 @@ func _ready() -> void:
 	text_label.text = active_scene.texts[0]
 	text_label.visible_ratio = 0
 	text_tween.tween_property(text_label, "visible_ratio", 1, 3)
-	
-func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and textbox.visible: 
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
 		if event.button_mask and event.button_index == 1:
 			continue_scene()
+	elif event.is_action_pressed("interact"):
+		continue_scene()
+#
+#func _on_gui_input(event: InputEvent) -> void:
+	#if event is InputEventMouseButton and textbox.visible: 
+		#if event.button_mask and event.button_index == 1:
+			#continue_scene()
 
 func toggle_textbox(value : bool):
 	textbox.visible = value

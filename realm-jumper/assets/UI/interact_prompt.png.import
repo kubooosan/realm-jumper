@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bj7ps8i7u3a7b"
-path="res://.godot/imported/LV 1 Backround.png-abef8e2c765d5729576fd537e06e25c0.ctex"
+uid="uid://dkwn42mimlpti"
+path="res://.godot/imported/interact_prompt.png-8fea9bf85ba265ee6c87a1f6b668f1b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/backgrounds/LV 1 Backround.png"
-dest_files=["res://.godot/imported/LV 1 Backround.png-abef8e2c765d5729576fd537e06e25c0.ctex"]
+source_file="res://assets/UI/interact_prompt.png"
+dest_files=["res://.godot/imported/interact_prompt.png-8fea9bf85ba265ee6c87a1f6b668f1b3.ctex"]
 
 [params]
 
